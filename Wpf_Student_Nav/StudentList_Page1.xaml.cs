@@ -32,6 +32,7 @@ namespace Wpf_Student_Nav
 
         public StudentList_Page1()
         {
+            int y = 1;
             InitializeComponent();
             lst.Add(srv.GetUser1());
             lst.Add(srv.GetUser2());
