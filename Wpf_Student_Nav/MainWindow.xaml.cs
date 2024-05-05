@@ -43,7 +43,40 @@ namespace Wpf_Student_Nav
         }
         private void HomeItem_Selected(object sender, RoutedEventArgs e)
         {
-            this.myFrame.Navigate(new HomePage());   // Frame-דיפדוף תוך שימוש ישיר בשם ה
+            var homePage = new HomePage();
+           // homePage.event += someFunction()
+            this.myFrame.Navigate(homePage);   // Frame-דיפדוף תוך שימוש ישיר בשם ה
+        }
+
+        private void HamburgerMenuItem_Login(object sender, RoutedEventArgs e)
+        {
+            var logginPage = new LoginPage();
+            logginPage.LoggedInEvent += new EventHandler(pageHome_LogIn);
+            this.myFrame.Navigate(logginPage);
+        }
+
+        public void pageHome_LogIn(object sender, EventArgs e)
+        {
+            UpdateMenu();
+        }
+
+        private void UpdateMenu()
+        {
+            if(AppContext.User == null)//not logged in hide menu items
+            {
+                this.Page1MenuItem.Visibility = Visibility.Collapsed;
+                this.Page2MenuItem.Visibility = Visibility.Collapsed;
+                //Show public menu items and login and signin
+                this.LoginMenuItem.Visibility = Visibility.Visible;
+            }
+
+            else //logged in hide login and signin
+            {
+                this.LoginMenuItem.Visibility = Visibility.Collapsed;
+                if(AppContext.User.IsAdmin) {
+                    //Show admin menu items
+                }
+            }
         }
 
         private void Item1_Selected(object sender, RoutedEventArgs e)
