@@ -42,6 +42,10 @@ namespace Wpf_Student_Nav
                 LoggedInEvent(this, e);
             }
 
+            //navigate to homepage
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new HomePage());
+
         }
     }
 }
