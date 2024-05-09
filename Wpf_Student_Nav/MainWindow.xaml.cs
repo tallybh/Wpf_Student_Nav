@@ -51,11 +51,11 @@ namespace Wpf_Student_Nav
         private void HamburgerMenuItem_Login(object sender, RoutedEventArgs e)
         {
             var logginPage = new LoginPage();
-            logginPage.LoggedInEvent += new EventHandler(pageHome_LogIn);
+            logginPage.LoggedInEvent += new EventHandler(updateMenu);
             this.myFrame.Navigate(logginPage);
         }
 
-        public void pageHome_LogIn(object sender, EventArgs e)
+        public void updateMenu(object sender, EventArgs e)
         {
             UpdateMenu();
         }

@@ -25,6 +25,8 @@ namespace Wpf_Student_Nav
         public Prefix Prefix { get => prefix; set => prefix = value; }
         public int PhoneNum { get => phoneNum; set => phoneNum = value; }
         public bool IsAdmin { get; set; }
+        public string UserName { get; internal set; }
+        public string Password { get; internal set; }
     }
 
    public class CityList : List<City>

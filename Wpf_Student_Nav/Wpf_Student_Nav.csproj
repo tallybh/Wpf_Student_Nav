@@ -77,6 +77,7 @@
     <Compile Include="StudentPage1.xaml.cs">
       <DependentUpon>StudentPage1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserDb.cs" />
     <Compile Include="ValueConverters.cs" />
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>

@@ -21,7 +21,6 @@ namespace Wpf_Student_Nav
     public partial class LoginPage : Page
     {
         public event EventHandler LoggedInEvent;
-        User _user;
         public LoginPage()
         {
             InitializeComponent();
@@ -29,23 +28,34 @@ namespace Wpf_Student_Nav
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //1.save user to DB
-            //UserDb db = new userDb();
-            //db.InsertUser(this._user);
-
-            //3.Update AppContext with logged user
-            AppContext.User = _user;
-
-            //3. throw event for main widow to update menu
-            if (LoggedInEvent != null)
+            
+            if(Username.Text.Length > 0 && Password.Text.Length >0)
             {
-                LoggedInEvent(this, e);
+                //1.check if user exist
+                UserDb db = new UserDb();
+                User u = db.CheckByNameAndPass(Username.Text, Password.Text);
+
+                if(u != null)
+                {
+                    //3.Update AppContext with logged user
+                    AppContext.User = u;
+
+                    //3. throw event for main widow to update menu
+                    if (LoggedInEvent != null)
+                    {
+                        LoggedInEvent(this, e);
+                    }
+
+                    //navigate to homepage
+                    NavigationService nav = NavigationService.GetNavigationService(this);
+                    nav.Navigate(new HomePage());
+                }
+
+                else
+                {
+                    //הודעה למשתמש
+                }   
             }
-
-            //navigate to homepage
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new HomePage());
-
         }
     }
 }
