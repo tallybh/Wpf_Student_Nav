@@ -75,7 +75,7 @@ namespace Wpf_Student_Nav
                 this.LoginMenuItem.Visibility = Visibility.Collapsed;
                 if(AppContext.User.IsAdmin) {
                     //Show admin menu items
-                }
+                 }
             }
         }
 
